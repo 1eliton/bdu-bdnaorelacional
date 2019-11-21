@@ -24,6 +24,7 @@ namespace Atividade04.Application
                 {
                     try
                     {
+                        Console.WriteLine("qwdqwd");
                         blog.Posts.Add(post);
                         Task.Run(async () => await Helper.ReplaceOneAsync(b => b.Id.Equals(blog.Id), blog));
                         return ("", true);

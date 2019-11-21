@@ -1,0 +1,41 @@
+﻿@model Atividade04.Domain.User
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <br />
+    <br />
+    <div>
+        @using (Html.BeginForm("Login", "User", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(a => a.Login)</td>
+                    <td>@Html.TextBoxFor(a => a.Login)</td>
+                    <td>@Html.ValidationMessageFor(a => a.Login)</td>
+                </tr>
+                <tr>
+                    <td> @Html.LabelFor(a => a.Password)</td>
+                    <td> @Html.PasswordFor(a => a.Password) </td>
+                    <td> @Html.ValidationMessageFor(a => a.Password) </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Login" />
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>

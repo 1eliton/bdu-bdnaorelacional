@@ -1,7 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@{
+    HttpCookie cookie = Request.Cookies["atividade4-user"];
+    string loggedUser = "";
+    if (cookie != null)
+    {
+        loggedUser = cookie.Value;
+    }
+}
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - BIG DATA - Univali</title>
@@ -21,9 +29,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Início", "Index", "Home")</li>*@
-                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                    <li>@*@Html.ActionLink("Início", "Index", "Home")*@</li>
+                    @if (!string.IsNullOrEmpty(loggedUser))
+                    {
+                        <li>@Html.ActionLink($"Meu blog - {loggedUser}", "Blog", "Index")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "User")</li>
+                        <li>@Html.ActionLink("Novo usuario", "Create", "User")</li>
+                    }
                 </ul>
             </div>
         </div>

@@ -25,4 +25,20 @@ namespace Atividade04.Domain
         [BsonElement]
         public UserRole Role { get; set; }
     }
+
+    public class UserDTO
+    {
+        public ObjectId Id { get; set; }
+     
+        public string Name { get; set; }
+     
+        public string Login { get; set; }
+     
+        public string Password { get; set; }
+     
+        public UserRole Role { get; set; }
+
+        public string BlogTitle { get; set; }
+        public string BlogDescription { get; set; }
+    }
 }

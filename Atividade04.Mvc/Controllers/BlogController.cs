@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Atividade04.Domain;
+using Atividade4.Infra;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +15,12 @@ namespace Atividade04.Mvc.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Posts(Post[] postsx)
+        {
+            return View(postsx);
         }
 
         public ActionResult BlogList()

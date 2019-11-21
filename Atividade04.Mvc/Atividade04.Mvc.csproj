@@ -176,6 +176,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,7 +220,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
-    <Content Include="Views\Blog\BlogList.cshtml" />
+    <Content Include="Views\Blog\Posts.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -246,6 +249,10 @@
     <ProjectReference Include="..\Atividade04.Dominio\Atividade04.Domain.csproj">
       <Project>{D7B7646F-2DD2-4F9F-9EC3-099C92FB6D3C}</Project>
       <Name>Atividade04.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atividade4.Infra\Atividade4.Infra.csproj">
+      <Project>{78517CBC-5BA3-408A-9AD2-322646B2F4F8}</Project>
+      <Name>Atividade4.Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

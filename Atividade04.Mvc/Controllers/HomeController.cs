@@ -12,7 +12,7 @@ namespace Atividade04.Mvc.Controllers
         public ActionResult Index()
         {
             var blogs = new BlogApplication().Get();
-            return RedirectToRoute(new { controller = "Blog", action = "Index" });
+            return View(blogs);
         }
 
         public ActionResult About()

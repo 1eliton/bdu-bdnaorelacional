@@ -1,18 +1,68 @@
-﻿@{
+﻿@using Atividade04.Domain;
+
+@model Blog
+
+@{
     ViewBag.Title = "Blogs";
+    HttpCookie cookie = Request.Cookies["atividade4-user"];
+    string loggedUser = "";
+    if (cookie != null)
+    {
+        loggedUser = cookie.Value;
+    }
 }
 
-
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Blogs</title>
-    </head>
-    <body>
-        <div>
-            <h1>Blogs</h1>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Blogs</title>
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Blogs</h1>
+        <p class="lead">Blog de @(Model.User.Login)</p>
+    </div>
 
+    @if (!String.IsNullOrEmpty(loggedUser) && loggedUser == Model.User.Login)
+    {
+        <a class="btn" href="@Url.Action("Index", "Post")">Novo Post</a>
+    }
 
-        </div>
-    </body>
+    @if (Model.Posts == null)
+    {
+        <p>Nenhuma postagem a exibir</p>
+    }
+    else
+    {
+        foreach (var post in Model.Posts)
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <h1>@post.Title</h1>
+                    <p>
+                        @post.Date
+                    </p>
+                    @if (post.Sections != null)
+                    {
+                        foreach (var section in post.Sections.OrderBy(o => o.Order))
+                        {
+                            <p>@(section.Title)</p>
+                            <p>@(section.Content)</p>
+                            if (section.Subsections != null)
+                            {
+                                foreach (var subsection in section?.Subsections)
+                                {
+                                    <p>@(subsection.Title)</p>
+                                    <p>@(subsection.Content)</p>
+
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        }
+
+    }
+</body>
 </html>

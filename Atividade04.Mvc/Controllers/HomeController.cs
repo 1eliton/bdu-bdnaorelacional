@@ -1,4 +1,6 @@
 ﻿using Atividade04.Application;
+using Atividade04.Domain;
+using Atividade4.Infra;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +13,9 @@ namespace Atividade04.Mvc.Controllers
     {
         public ActionResult Index()
         {
-            var blogs = new BlogApplication().Get();
+            var blogs = Helper.GetFiltered<Blog>(b => b.Posts != null).ToList();
+               //.OrderBy(x => x.Posts.OrderByDescending(y => y.Date)).ToList();
             return View(blogs);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Blogs - BIG DATA - Univali";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Blogs - BIG DATA - Univali";
-
-            return View();
         }
     }
 }

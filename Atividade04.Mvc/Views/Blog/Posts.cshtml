@@ -1,7 +1,12 @@
 ﻿@model IEnumerable<Atividade04.Domain.Post>
 
 @{
-    
+    HttpCookie cookie = Request.Cookies["atividade4-user"];
+    string loggedUser = "";
+    if (cookie != null)
+    {
+        loggedUser = cookie.Value;
+    }
 }
 
 <!DOCTYPE html>
@@ -11,7 +16,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>Posts</title>
 </head>
+
 <body>
+    <div class="jumbotron">
+        <h1>Posts</h1>
+        <p class="lead">Postagens do blog @(loggedUser)</p>
+    </div>
     @if (Model == null)
     {
         <h1>Sem postagens disponiveis!</h1>
@@ -31,7 +41,6 @@
                 </th>
                 <th></th>
             </tr>
-
             @foreach (var item in Model)
             {
                 <tr>

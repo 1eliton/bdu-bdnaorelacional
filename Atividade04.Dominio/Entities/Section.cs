@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Atividade04.Domain.Entities;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,6 @@ namespace Atividade04.Domain
         /// Sections []
         /// </summary>
         [BsonElement]
-        public List<Section> Sections { get; set; }
+        public List<Subsection> Subsections { get; set; }
     }
 }

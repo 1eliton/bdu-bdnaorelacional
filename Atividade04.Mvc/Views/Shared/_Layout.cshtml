@@ -32,7 +32,7 @@
                     <li>@*@Html.ActionLink("Início", "Index", "Home")*@</li>
                     @if (!string.IsNullOrEmpty(loggedUser))
                     {
-                        <li>@Html.ActionLink($"Meu blog - {loggedUser}", "Blog", "Index")</li>
+                        <li>@Html.ActionLink($"Meu blog - {loggedUser}", "Index", "Blog")</li>
                     }
                     else
                     {

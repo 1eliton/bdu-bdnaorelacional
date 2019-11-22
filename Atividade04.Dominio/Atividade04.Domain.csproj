@@ -75,6 +75,7 @@
     <Compile Include="Entities\Blog.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\Section.cs" />
+    <Compile Include="Entities\Subsection.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enum\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

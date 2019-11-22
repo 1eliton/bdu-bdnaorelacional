@@ -5,9 +5,6 @@
 
 @model List<Blog>
 
-<script>
-    console.log(posts);
-</script>
 <div class="jumbotron">
     <h1>Blogs</h1>
     <p class="lead">Todos os blogs cadastrados.</p>
@@ -23,8 +20,9 @@
             </p>
             @if (blog.Posts != null)
             {
-                var postsx = blog.Posts.ToArray();
-                <a class="btn" href="@Url.Action("Posts", "Blog", new { postsx })">Postagens</a>
+                @blog.Id
+                @*@Html.ActionLink("Postagens", "Posts", "Blog", new { blogId = blog.Id })*@
+                <a class="btn" href="@Url.Action("Index2", "Blog")/@blog.Id ">Postagens</a>
             }
             else
             {

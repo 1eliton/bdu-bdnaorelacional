@@ -11,40 +11,42 @@ namespace Atividade04.Mvc.Controllers
 {
     public class BlogController : Controller
     {
-        // GET: Blog
+        // GET: Blog da sessao
         public ActionResult Index()
         {
+            HttpCookie cookie = Request.Cookies["atividade4-user"];
+            if (cookie != null)
+            {
+                var blog = Helper.GetFiltered<Blog>(b => b.User.Login == cookie.Value).FirstOrDefault();
+                return View(blog);
+            }
+
             return View();
         }
 
+        /// <summary>
+        /// blog do Id recebido
+        /// </summary>
+        /// <param name="blogId"></param>
+        /// <returns></returns>
         [HttpGet]
-        public ActionResult Posts(Post[] postsx)
+        public ActionResult Index2(string id)
         {
-            return View(postsx);
+            var blog = Helper.GetFiltered<Blog>(b => b.Id == new ObjectId(id)).FirstOrDefault();
+            return View("Index", blog);
         }
 
-        public ActionResult BlogList()
+        public ActionResult Posts(ObjectId Id)
         {
-            // Buscar todos os blogs ordenando pelo blog que fez a postagem mais recente até o mais antigo
-
-            //try
-            //{
-            //    using (var aplicacao = Container.Obter<BicoAplicacao>())
-            //    {
-            //        string codigo = StringRequest("codigo");
-            //        List<BicoGrid> bicos = aplicacao.RetornaBicos(filtro).OrderBy(d => d.Codigo);
-            //        ViewBag.codigo = codigo;
-
-            //        return PartialView(bicos);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    return Json(ResultadoOperacao.CriarFalha(ex.Message));
-            //}
-
-
-            return PartialView();
+            var blog = Helper.GetFiltered<Blog>(f => f.Id.Equals(Id));
+            if (blog != null)
+            {
+                if (blog.FirstOrDefault().Posts != null)
+                    return View(blog.FirstOrDefault().Posts.OrderByDescending(a => a.Date).ToList());
+                else
+                    return View();
+            }
+            return View();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Atividade04.Domain.Entities
+namespace Atividade04.Domain
 {
     public class Subsection
     {

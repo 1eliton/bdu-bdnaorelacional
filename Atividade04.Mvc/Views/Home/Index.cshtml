@@ -22,7 +22,7 @@
             {
                 @blog.Id
                 @*@Html.ActionLink("Postagens", "Posts", "Blog", new { blogId = blog.Id })*@
-                <a class="btn" href="@Url.Action("Index2", "Blog")/@blog.Id ">Postagens</a>
+                <a class="btn" href="@Url.Action("Postagens", "Blog")/@blog.Id ">Postagens</a>
             }
             else
             {

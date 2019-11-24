@@ -30,7 +30,7 @@ namespace Atividade04.Mvc.Controllers
         /// <param name="blogId"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Index2(string id)
+        public ActionResult Postagens(string id)
         {
             var blog = Helper.GetFiltered<Blog>(b => b.Id == new ObjectId(id)).FirstOrDefault();
             return View("Index", blog);

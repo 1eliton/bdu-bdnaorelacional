@@ -1,5 +1,4 @@
-﻿using Atividade04.Domain.Entities;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;

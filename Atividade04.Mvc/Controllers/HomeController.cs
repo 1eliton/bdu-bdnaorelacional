@@ -14,6 +14,9 @@ namespace Atividade04.Mvc.Controllers
         public ActionResult Index()
         {
             var blogs = Helper.GetFiltered<Blog>(b => b.Posts != null).ToList();
+
+            var testao = Helper.GetFiltered<Blog>(b => b.Posts != null)
+                .SelectMany(i => new { a = i.Posts, b = i.Title }.a.OrderByDescending(y => y.Date));
                //.OrderBy(x => x.Posts.OrderByDescending(y => y.Date)).ToList();
             return View(blogs);
         }

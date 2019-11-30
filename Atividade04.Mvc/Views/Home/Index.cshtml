@@ -20,7 +20,6 @@
             </p>
             @if (blog.Posts != null)
             {
-                @blog.Id
                 @*@Html.ActionLink("Postagens", "Posts", "Blog", new { blogId = blog.Id })*@
                 <a class="btn" href="@Url.Action("Postagens", "Blog")/@blog.Id ">Postagens</a>
             }

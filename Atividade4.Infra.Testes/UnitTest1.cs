@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Atividade04.Domain;
@@ -160,6 +161,81 @@ Pou contaria com 51% da intenção de votos e Martínez, com 43%.",
             {
                 throw;
             }
+        }
+
+        [TestMethod]
+        public void PublishBlog1()
+        {
+            var post = new Post
+            {
+                Title = "Sobre mim",
+                Date = DateTime.Today.AddDays(-7).Date,
+                Sections = new List<Section>
+                {
+                    new Section
+                    {
+                        Content = "",
+                        Order = 2,
+                        Title = "",
+                        Subsections = new List<Subsection>
+                        {
+                            new Subsection
+                            {
+                                Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                                Title = "Lorem ipsum dolor sit amet"
+                            }
+                        }
+                    }
+                }
+            };
+
+            var blog = Helper.GetFiltered<Blog>(b => b.User.Login == "eliton").FirstOrDefault();
+            blog.Posts.Add(post);
+            var task = Helper.ReplaceOneAsync(b => b.Id.Equals(blog.Id), blog);
+
+            Task.WaitAll(task);
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void PublicBlogRafael()
+        {
+            var post = new Post
+            {
+                Title = "Sobre mim - Rafael",
+                Date = DateTime.Today.AddDays(-7).Date,
+                Sections = new List<Section>
+                {
+                    new Section
+                    {
+                        Content = "",
+                        Order = 2,
+                        Title = "",
+                        Subsections = new List<Subsection>
+                        {
+                            new Subsection
+                            {
+                                Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                                Title = "Lorem ipsum dolor sit amet"
+                            }
+                        }
+                    }
+                }
+            };
+
+            var blog = Helper.GetFiltered<Blog>(b => b.User.Login == "rafael.professor").FirstOrDefault();
+            if (blog.Posts == null)
+            {
+                blog.Posts = new List<Post> { post };
+            } else
+            {
+                blog.Posts.Add(post);
+            }
+            
+            var task = Helper.ReplaceOneAsync(b => b.Id.Equals(blog.Id), blog);
+
+            Task.WaitAll(task);
+            Assert.IsTrue(true);
         }
     }
 }

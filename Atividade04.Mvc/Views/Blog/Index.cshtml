@@ -20,7 +20,7 @@
 <body>
     <div class="jumbotron">
         <h1>Blogs</h1>
-        <p class="lead">Blog de @(Model.User.Login)</p>
+        <p class="lead">Blog de @(Model.User.Name)</p>
     </div>
 
     @if (!String.IsNullOrEmpty(loggedUser) && loggedUser == Model.User.Login)
